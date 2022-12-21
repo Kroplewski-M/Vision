@@ -2,7 +2,7 @@
     import profilePrompt from '@/components/profilePrompt.vue';
     import { ref } from 'vue';
 
-    let showPrompt = ref(true);
+    let showPrompt = ref(false);
 </script>
 
 

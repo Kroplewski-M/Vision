@@ -5,7 +5,7 @@ import Login from '@/views/logInView.vue';
 </script>
 
 <template>
-    <!-- <Nav></Nav> -->
+    <Nav></Nav>
     <Login></Login>
 </template>
 
