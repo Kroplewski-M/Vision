@@ -5,16 +5,32 @@
 <template>
     <div class="w-[100vw] h-[100vh] bg-gray-200">
         <section class="grid place-content-center w-[100vw] h-[80vh]">
-            <div class="w-[500px] h-[500px] rounded-md bg-[#0080FF] mt-16">
+            <div class="w-[500px] pb-10 rounded-md bg-[#0080FF] mt-16">
                 <h1 class="font-bold text-gray-200 text-[40px] text-center font-serif italic">Register</h1>
-                <form action="" class="w-[400px] mx-auto mt-10">
+                <form action="" class="w-[320px] mx-auto mt-10 text-center">
+                    <div class="w-[270px] mx-auto mb-[10px]">
+                        <p class="text-[20px] font-semibold text-gray-100 mb-[15px]">Choose an avatar:</p>
+                        <ul class="flex space-x-5">
+                            <li><img src="@/assets/images/avatars/defaultAvatar1.png" alt="" class="w-[50px] h-[50px]"></li>
+                            <li><img src="@/assets/images/avatars/defaultAvatar2.png" alt="" class="w-[50px] h-[50px]"></li>
+                            <li><img src="@/assets/images/avatars/defaultAvatar3.png" alt="" class="w-[50px] h-[50px]"></li>
+                            <li><img src="@/assets/images/avatars/defaultAvatar4.png" alt="" class="w-[50px] h-[50px]"></li>
+    
+                        </ul>
+                    </div>
+                    <label for="name" class="text-gray-100 font-semibold text-[20px] mr-[10px]">Full Name:</label>
+                    <input type="text" name="name" id="" placeholder="John Doe" class="w-[300px] h-[34px] rounded-md pl-[10px] font-semibold text-[#333333] mb-[5px]">
+
                     <label for="email" class="text-gray-100 font-semibold text-[20px] mr-[10px]">Email:</label>
-                    <input type="email" name="email" id="" placeholder="Email" class="w-[300px] h-[34px] rounded-md pl-[10px] font-semibold text-[#333333] mb-5">
+                    <input type="email" name="email" id="" placeholder="Email" class="w-[300px] h-[34px] rounded-md pl-[10px] font-semibold text-[#333333] mb-[5px]">
         
                     <label for="password" class="text-gray-100 font-semibold text-[20px] mr-[10px] ">Password:</label>
-                    <input type="password" name="password" id="" placeholder="Password" class="w-[265px] h-[34px] rounded-md pl-[10px] font-semibold text-[#333333]">
+                    <input type="password" name="password" id="" placeholder="Password" class="w-[265px] h-[34px] rounded-md pl-[10px] font-semibold text-[#333333] mb-[5px]">
+
+                    <label for="conPassword" class="text-gray-100 font-semibold text-[20px] mr-[10px] ">Confirm password:</label>
+                    <input type="password" name="conPassword" id="" placeholder="Confirm Password" class="w-[265px] h-[34px] rounded-md pl-[10px] font-semibold text-[#333333] mb-[5px]">
                     <div class="w-[100px] mx-auto mt-10">
-                        <button class="w-[100%] h-[30px] rounded-md bg-gray-200 text-[#333333] font-semibold hover:bg-[#333333] hover:text-gray-200">Log in</button>
+                        <button class="w-[100%] h-[30px] rounded-md bg-gray-200 text-[#333333] font-semibold hover:bg-[#333333] hover:text-gray-200">Register</button>
                     </div>
                 </form>
 
