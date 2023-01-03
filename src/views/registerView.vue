@@ -1,6 +1,10 @@
 <script setup>
 import {ref} from 'vue';
-    let selectedAvatar = ref(2);
+    
+
+let selectedAvatar = ref(2);
+
+
 </script>
 
 <template>
@@ -14,16 +18,16 @@ import {ref} from 'vue';
                         <ul class="flex space-x-5">
                             <li @click.prevent="selectedAvatar=0">
                             <img src="@/assets/images/avatars/defaultAvatar1.png" alt="" :class="selectedAvatar == 0 ? 'border-gray-200 border-solid border-2': ''"
-                            class="w-[50px] h-[50px] hover:cursor-pointer hover:border-solid hover:border-2 hover:border-gray-200 rounded-full"></li>
+                            class="w-[50px] h-[50px] hover:cursor-pointer hover:border-solid hover:border-2 hover:border-gray-300 rounded-full"></li>
                             <li @click.prevent="selectedAvatar=1">
                             <img src="@/assets/images/avatars/defaultAvatar2.png" alt="" :class="selectedAvatar == 1 ? 'border-gray-200 border-solid border-2': ''"
-                            class="w-[50px] h-[50px] hover:cursor-pointer hover:border-solid hover:border-2 hover:border-gray-200 rounded-full"></li>
+                            class="w-[50px] h-[50px] hover:cursor-pointer hover:border-solid hover:border-2 hover:border-gray-300 rounded-full"></li>
                             <li @click.prevent="selectedAvatar=2">
                             <img src="@/assets/images/avatars/defaultAvatar3.png" alt="" :class="selectedAvatar == 2 ? 'border-gray-200 border-solid border-2': ''"
-                            class="w-[50px] h-[50px] hover:cursor-pointer hover:border-solid hover:border-2 hover:border-gray-200 rounded-full"></li>
+                            class="w-[50px] h-[50px] hover:cursor-pointer hover:border-solid hover:border-2 hover:border-gray-300 rounded-full"></li>
                             <li @click.prevent="selectedAvatar=3">
                             <img src="@/assets/images/avatars/defaultAvatar4.png" alt="" :class="selectedAvatar == 3 ? 'border-gray-200 border-solid border-2': ''"
-                            class="w-[50px] h-[50px] hover:cursor-pointer hover:border-solid hover:border-2 hover:border-gray-200 rounded-full"></li>
+                            class="w-[50px] h-[50px] hover:cursor-pointer hover:border-solid hover:border-2 hover:border-gray-300 rounded-full"></li>
     
                         </ul>
                     </div>
