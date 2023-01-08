@@ -1,6 +1,9 @@
 <script setup>
 import {ref} from 'vue';
+import {supabase} from '../includes/supabase';
+
 let selectedAvatar = ref(2);
+let loading = ref(false);
 
 const schema = {
     name: "required|min:3|max:50|alpha_spaces",
@@ -9,8 +12,25 @@ const schema = {
     confirmPassword: "required|password_mismatch:@password",
 };
 
-function register(values){
+async function register(values, {resetForm}){
     console.log(values);
+    loading.value = true;
+    try{
+        const {error} = await supabase.auth.signUp({
+            email: values.email,
+            password: values.password,
+        })
+        if(error){ JSON.stringify(error);}
+        else{
+            console.log("Auth added");
+        }
+        }catch(error){
+            alert(error);
+    }finally{
+        resetForm();
+        loading.value = false;
+    }
+
 }
 </script>
 
@@ -48,7 +68,8 @@ function register(values){
         <vee-field type="password" name="confirmPassword" id="" placeholder="Confirm Password" class="w-[265px] h-[34px] rounded-md pl-[10px] font-semibold text-[#333333] mb-[15px]" />
         <ErrorMessage name="confirmPassword" class="text-red-600 block text-left ml-[30px] font-semibold absolute -mt-[15px]"/>
 
-        <button class="w-[100%] h-[40px] rounded-md bg-gray-200 text-[#333333] font-semibold hover:bg-[#333333] hover:text-gray-200 mt-10">Register</button>
+        <button class="w-[100%] h-[40px] rounded-md bg-gray-200 text-[#333333] font-semibold hover:bg-[#333333] hover:text-gray-200 mt-10"
+        :disabled="loading">Register</button>
     </vee-form>
 
 
