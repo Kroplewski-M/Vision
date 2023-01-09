@@ -2,6 +2,10 @@
 import {ref} from 'vue';
 import {supabase} from '../includes/supabase';
 
+const emit = defineEmits(['customChange']);
+
+
+
 let selectedAvatar = ref(2);
 let loading = ref(false);
 
@@ -14,19 +18,21 @@ const schema = {
 
 async function register(values, {resetForm}){
     loading.value = true;
+    emit('creatingAccount');
     try{
         const {data,error} = await supabase.auth.signUp({
             email: values.email,
             password: values.password,
         })
-        if(error){ JSON.stringify(error);}
+        if(error){ 
+            throw error;
+        }
         else{
-            console.log("Auth added");
             console.log(data);
             addUser(values,data);
         }
         }catch(error){
-            alert(error);
+            emit("errorOccured");
     }finally{
         resetForm();
     }
@@ -39,8 +45,10 @@ async function addUser(values,dataID){
             throw error;
         }else{
             console.log('user added to table');
+            emit('accountCreated');
         }
     }catch(error){
+        emit("errorOccured");
         console.log(error);
     }finally{
         loading.value = false;
@@ -68,18 +76,18 @@ async function addUser(values,dataID){
                 </ul>
         </div>
         <label for="name" class="text-gray-100 font-semibold text-[20px] mr-[10px]">Full Name:</label>
-        <vee-field type="text" name="name" id="" placeholder="John Doe" class="w-[300px] h-[34px] rounded-md pl-[10px] font-semibold text-[#333333] mb-[15px]" />
+        <vee-field type="text" name="name" id="name" placeholder="John Doe" class="w-[300px] h-[34px] rounded-md pl-[10px] font-semibold text-[#333333] mb-[15px]" />
         <ErrorMessage name="name" class="text-red-600 block text-left ml-[10px] font-semibold absolute -mt-[15px]"/>
         <label for="email" class="text-gray-100 font-semibold text-[20px] mr-[10px]">Email:</label>
-        <vee-field type="email" name="email" id="" placeholder="Email" class="w-[300px] h-[34px] rounded-md pl-[10px] font-semibold text-[#333333] mb-[15px]" />
+        <vee-field type="email" name="email" id="email" placeholder="Email" class="w-[300px] h-[34px] rounded-md pl-[10px] font-semibold text-[#333333] mb-[15px]" />
         <ErrorMessage name="email" class="text-red-600 block text-left ml-[10px] font-semibold absolute -mt-[15px]"/>
         
         <label for="password" class="text-gray-100 font-semibold text-[20px] mr-[10px] ">Password:</label>
-        <vee-field type="password" name="password" id="" placeholder="Password" class="w-[265px] h-[34px] rounded-md pl-[10px] font-semibold text-[#333333] mb-[15px]" />
+        <vee-field type="password" name="password" id="password" placeholder="Password" class="w-[265px] h-[34px] rounded-md pl-[10px] font-semibold text-[#333333] mb-[15px]" />
         <ErrorMessage name="password" class="text-red-600 block text-left ml-[30px] font-semibold absolute -mt-[15px]"/>
 
         <label for="conPassword" class="text-gray-100 font-semibold text-[20px] mr-[10px] ">Confirm password:</label>
-        <vee-field type="password" name="confirmPassword" id="" placeholder="Confirm Password" class="w-[265px] h-[34px] rounded-md pl-[10px] font-semibold text-[#333333] mb-[15px]" />
+        <vee-field type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirm Password" class="w-[265px] h-[34px] rounded-md pl-[10px] font-semibold text-[#333333] mb-[15px]" />
         <ErrorMessage name="confirmPassword" class="text-red-600 block text-left ml-[30px] font-semibold absolute -mt-[15px]"/>
 
         <button class="w-[100%] h-[40px] rounded-md bg-gray-200 text-[#333333] font-semibold hover:bg-[#333333] hover:text-gray-200 mt-10"

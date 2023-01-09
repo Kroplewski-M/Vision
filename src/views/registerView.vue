@@ -28,7 +28,7 @@ let accountError = ref(false);
                     </div>
                 </div>
                 <h1 class="font-bold text-gray-200 text-[40px] text-center font-serif italic">Register</h1>
-                <RegisterForm></RegisterForm>
+                <RegisterForm @creatingAccount="creatingAccount = true" @accountCreated="creatingAccount = false, accountCreated = true" @errorOccured='accountError = true,creatingAccount = false,accountCreated = false'></RegisterForm>
                 <p class="text-center text-[20px] font-semibold text-gray-200 mt-10">Or log in...</p>
                 <div class="w-[100px] mx-auto mt-10">
                         <button class="w-[100%] h-[30px] rounded-md bg-[#333333] text-gray-200 font-semibold hover:text-[#333333] hover:bg-gray-200">Log in</button>
