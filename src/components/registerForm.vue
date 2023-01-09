@@ -13,24 +13,38 @@ const schema = {
 };
 
 async function register(values, {resetForm}){
-    console.log(values);
     loading.value = true;
     try{
-        const {error} = await supabase.auth.signUp({
+        const {data,error} = await supabase.auth.signUp({
             email: values.email,
             password: values.password,
         })
         if(error){ JSON.stringify(error);}
         else{
             console.log("Auth added");
+            console.log(data);
+            addUser(values,data);
         }
         }catch(error){
             alert(error);
     }finally{
         resetForm();
-        loading.value = false;
     }
 
+}
+async function addUser(values,dataID){
+    try{
+        const {data,error} = await supabase.from('users').insert([{id:dataID.user.id,FullName:values.name,Email:values.email,AvatarNum:selectedAvatar.value }]);
+        if(error){
+            throw error;
+        }else{
+            console.log('user added to table');
+        }
+    }catch(error){
+        console.log(error);
+    }finally{
+        loading.value = false;
+    }
 }
 </script>
 
