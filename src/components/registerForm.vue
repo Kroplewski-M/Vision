@@ -18,7 +18,7 @@ const schema = {
 
 async function register(values, {resetForm}){
     loading.value = true;
-    emit('creatingAccount');
+    emit('promt', 'creatingAccount');
     try{
         const {data,error} = await supabase.auth.signUp({
             email: values.email,
@@ -32,7 +32,7 @@ async function register(values, {resetForm}){
             addUser(values,data);
         }
         }catch(error){
-            emit("errorOccured");
+            emit('promt', 'Error');
     }finally{
         resetForm();
     }
@@ -45,10 +45,10 @@ async function addUser(values,dataID){
             throw error;
         }else{
             console.log('user added to table');
-            emit('accountCreated');
+            emit('promt', 'Success');
         }
     }catch(error){
-        emit("errorOccured");
+        emit('promt', 'Error');
         console.log(error);
     }finally{
         loading.value = false;
