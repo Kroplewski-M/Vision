@@ -22,8 +22,8 @@ window.addEventListener('resize', (event) =>{
 <template>
     <div v-if="show">
         <Nav></Nav>
-        <!-- <Login></Login> -->
-        <Register></Register>
+        <Login></Login>
+        <!-- <Register></Register> -->
     </div>
     <div v-else>
         <div class="w-[100vw] h-[100vh] place-content-center grid">
