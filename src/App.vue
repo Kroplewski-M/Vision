@@ -2,6 +2,7 @@
 import Nav from '@/components/Nav.vue';
 import Login from '@/views/logInView.vue';
 import Register from '@/views/registerView.vue';
+import HomeView from '@/views/homeView.vue';
 import {ref} from 'vue';
 
 
@@ -22,8 +23,9 @@ window.addEventListener('resize', () =>{
 <template>
     <div v-if="show">
         <Nav></Nav>
-        <Login></Login>
+        <!-- <Login></Login> -->
         <!-- <Register></Register> -->
+        <HomeView></HomeView>
     </div>
     <div v-else>
         <div class="w-[100vw] h-[100vh] place-content-center grid">
