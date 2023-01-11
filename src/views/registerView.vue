@@ -27,7 +27,7 @@ function promt(value){
                     </div>
                 </div>
                 <div v-if="registerPromt == 'Error'" class="w-[500px] h-[30px] absolute -mt-[35px]">
-                    <div class="w-[300px] h-[30px] bg-red-500 rounded-md mx-auto">
+                    <div class="w-[300px] h-[30px] bg-red-600 rounded-md mx-auto">
                         <p class="font-semibold text-center pt-[2px]">Error Occured... Please try again</p>
                     </div>
                 </div>

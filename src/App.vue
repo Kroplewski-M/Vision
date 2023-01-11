@@ -9,7 +9,7 @@ let SW = ref(window.innerWidth);
 let show = ref(true);
 let minW = 768;
 
-window.addEventListener('resize', (event) =>{
+window.addEventListener('resize', () =>{
     SW = window.innerWidth;
     if(SW >= minW)
         show.value = true;

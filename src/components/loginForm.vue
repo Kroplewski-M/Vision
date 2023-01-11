@@ -2,13 +2,30 @@
 import {supabase} from '../includes/supabase';
 import {ref} from 'vue';
 
+
+const emit = defineEmits(['customChange']);
 let loading = ref(false);
+
 const schema = {
     email: 'required',
     password: 'required',
 }
-function login(values){
-    console.log(values);
+async function login(values, {resetForm}){
+    loading.value = false;
+    emit('promt','logginIn');
+    try{
+        const {data,error} = await supabase.auth.signInWithPassword({email: values.email, password: values.password});
+        if(error){
+            throw error;
+        }else{
+            console.log('account found');
+        }
+    }catch(error){
+        emit('promt','error');
+    }finally{
+        resetForm();
+        loading.value = false;
+    }
 }
 </script>
 
@@ -23,7 +40,9 @@ function login(values){
         <ErrorMessage name="password" class="text-red-600 block text-left ml-[65px] font-semibold absolute"/>
 
         <div class="w-[100px] mx-auto mt-10">
-            <button class="w-[100%] h-[30px] rounded-md bg-gray-200 text-[#333333] font-semibold hover:bg-[#333333] hover:text-gray-200">Log in</button>
+            <button @disabled="loading"
+            class="w-[100%] h-[30px] rounded-md bg-gray-200 text-[#333333] font-semibold hover:bg-[#333333] hover:text-gray-200">
+            Log in</button>
         </div>
     </vee-form>
 
