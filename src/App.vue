@@ -4,7 +4,7 @@ import Login from '@/views/logInView.vue';
 import Register from '@/views/registerView.vue';
 import HomeView from '@/views/homeView.vue';
 import {ref} from 'vue';
-
+import { useProfileStore } from './stores/profile';
 
 let SW = ref(window.innerWidth);
 let show = ref(true);
@@ -18,6 +18,8 @@ window.addEventListener('resize', () =>{
         show.value = false;
 })
 
+let profile = useProfileStore();
+console.log(profile);
 </script>
 
 <template>
