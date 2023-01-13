@@ -5,6 +5,7 @@ import Register from '@/views/registerView.vue';
 import HomeView from '@/views/homeView.vue';
 import {ref} from 'vue';
 import { useProfileStore } from './stores/profile';
+import {supabase} from './includes/supabase';
 
 let SW = ref(window.innerWidth);
 let show = ref(true);
@@ -18,16 +19,45 @@ window.addEventListener('resize', () =>{
         show.value = false;
 })
 
-let profile = useProfileStore();
-console.log(profile);
+//CHECK IF USER IS LOGGED IN 
+let profileStore = useProfileStore();
+function getToken(){
+    if(profileStore.user.id == undefined){
+          let token = localStorage.getItem('userAuth');
+        if(token != null){
+          let user = JSON.parse(token);
+          let id = user.user.id;
+          getUser(id);
+        }
+      }
+    }
+
+async function getUser(id){
+    console.log(id);
+    try{
+        const {data:profile, error} = await supabase.from('users').select('id,FullName,Email,AvatarNum,created_at').eq('id',id);
+        if(error){
+            throw error;
+        }else{
+            profileStore.user.id = profile[0].id;
+            profileStore.user.FullName = profile[0].FullName;
+            profileStore.user.Email = profile[0].Email;
+            profileStore.user.AvatarNum = profile[0].AvatarNum;
+            profileStore.user.created_at = profile[0].created_at;
+        }
+    }catch(error){
+        console.log(error);
+    }
+}
+getToken();
 </script>
 
 <template>
     <div v-if="show">
         <Nav></Nav>
-        <!-- <Login></Login> -->
+        <Login></Login>
         <!-- <Register></Register> -->
-        <HomeView></HomeView>
+        <!-- <HomeView></HomeView> -->
     </div>
     <div v-else>
         <div class="w-[100vw] h-[100vh] place-content-center grid">
