@@ -3,6 +3,7 @@ import Nav from '@/components/Nav.vue';
 import Login from '@/views/logInView.vue';
 import Register from '@/views/registerView.vue';
 import HomeView from '@/views/homeView.vue';
+import ProfileView from '@/views/profileView.vue';
 import {ref} from 'vue';
 import { useProfileStore } from './stores/profile';
 import {supabase} from './includes/supabase';
@@ -23,7 +24,7 @@ window.addEventListener('resize', () =>{
 let profileStore = useProfileStore();
 function getToken(){
     if(profileStore.user.id == undefined){
-          let token = localStorage.getItem('userAuth');
+          let token = localStorage.getItem('sb-wtptxhzbzaymsoitlnwz-auth-token');
         if(token != null){
           let user = JSON.parse(token);
           let id = user.user.id;
@@ -33,7 +34,6 @@ function getToken(){
     }
 
 async function getUser(id){
-    console.log(id);
     try{
         const {data:profile, error} = await supabase.from('users').select('id,FullName,Email,AvatarNum,created_at').eq('id',id);
         if(error){
@@ -47,6 +47,8 @@ async function getUser(id){
         }
     }catch(error){
         console.log(error);
+    }finally{
+        console.log(profileStore.user);
     }
 }
 getToken();
@@ -55,9 +57,10 @@ getToken();
 <template>
     <div v-if="show">
         <Nav></Nav>
-        <Login></Login>
+        <!-- <Login></Login>-->
         <!-- <Register></Register> -->
         <!-- <HomeView></HomeView> -->
+        <ProfileView></ProfileView>
     </div>
     <div v-else>
         <div class="w-[100vw] h-[100vh] place-content-center grid">
