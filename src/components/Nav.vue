@@ -7,6 +7,15 @@
     let showPrompt = ref(false);
 
     let profileStore = useProfileStore();
+
+    let defaultAvatar1 = new URL('../assets/images/avatars/defaultAvatar1.png', import.meta.url).href;
+    let defaultAvatar2 = new URL('../assets/images/avatars/defaultAvatar2.png', import.meta.url).href;
+    let defaultAvatar3 = new URL('../assets/images/avatars/defaultAvatar3.png', import.meta.url).href;
+    let defaultAvatar4 = new URL('../assets/images/avatars/defaultAvatar4.png', import.meta.url).href;
+
+
+    
+ 
 </script>
 
 
@@ -15,7 +24,7 @@
         <p class="text-gray-100 text-[30px] font-serif italic pt-[13px] hover:cursor-pointer w-[100px] mx-auto">
         Vision</p>
         <div v-if="profileStore.user.id != undefiend">
-            <img src="@/assets/images/userIcon2.png" alt="" class="w-[50px] h-[50px] mt-[5px] absolute right-10 top-1 hover:cursor-pointer" @click.prevent='showPrompt= !showPrompt'> 
+            <img :src='defaultAvatar1' alt="" class="w-[50px] h-[50px] mt-[5px] absolute right-10 top-1 hover:cursor-pointer" @click.prevent='showPrompt= !showPrompt'> 
             <profilePrompt v-if="showPrompt"></profilePrompt>
         </div>
         <div v-else>
