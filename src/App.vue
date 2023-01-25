@@ -3,6 +3,10 @@ import Nav from '@/components/Nav.vue';
 import {ref} from 'vue';
 import { useProfileStore } from './stores/profile';
 import {supabase} from './includes/supabase';
+import { useRouter, useRoute } from 'vue-router'
+
+const router = useRouter();
+const route = useRoute();
 
 let SW = ref(window.innerWidth);
 let show = ref(true);
@@ -39,6 +43,9 @@ async function getUser(id){
             profileStore.user.Email = profile[0].Email;
             profileStore.user.AvatarNum = profile[0].AvatarNum;
             profileStore.user.created_at = profile[0].created_at;
+            if(route.path == '/'){
+                router.push('/projects');
+            }
         }
     }catch(error){
         console.log(error);
@@ -46,7 +53,9 @@ async function getUser(id){
 }
 getToken();
 
-console.log(this.$router);
+
+
+console.log(route.path);
 
 </script>
 

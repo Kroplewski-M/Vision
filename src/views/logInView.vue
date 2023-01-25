@@ -15,6 +15,7 @@ watch(promt, ()=>{
         },3000)
     }
 })
+
 </script>
 
 <template>
