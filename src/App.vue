@@ -28,7 +28,6 @@ function getToken(){
         }
       }
     }
-
 async function getUser(id){
     try{
         const {data:profile, error} = await supabase.from('users').select('id,FullName,Email,AvatarNum,created_at').eq('id',id);
@@ -46,6 +45,9 @@ async function getUser(id){
     }
 }
 getToken();
+
+console.log(this.$router);
+
 </script>
 
 <template>
